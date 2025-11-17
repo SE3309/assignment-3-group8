@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS Group8DB;
+USE Group8DB;
 CREATE TABLE Customer(
 	email		VARCHAR(200) NOT NULL UNIQUE,
     phoneNo		VARCHAR(20) NOT NULL UNIQUE,
@@ -9,6 +11,7 @@ CREATE TABLE Customer(
     city		VARCHAR(100),
     street		VARCHAR(100),
     streetNo	VARCHAR(50),
+    address		VARCHAR(300) AS (CONCAT(streetNo, ' ', street, ', ', city, ', ', province)),
     PRIMARY KEY(email)
 );
 
@@ -21,6 +24,7 @@ CREATE TABLE Staff(
     jobTitle	VARCHAR(100) NOT NULL DEFAULT 'Employee',
     phoneNo		VARCHAR(20) NOT NULL UNIQUE,
     salary		DECIMAL(10, 2) NOT NULL CHECK(salary > 0),
+    fullName	VARCHAR(250) AS (CONCAT(fName, ' ', lName)),
     PRIMARY KEY(email)
 );
     
