@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS Group8DB;
+USE Group8DB;
+
 -- Generate Customer
 DROP PROCEDURE IF EXISTS GenerateCustomer;
 DELIMITER //
