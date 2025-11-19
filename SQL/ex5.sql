@@ -1,17 +1,5 @@
 USE Group8DB;
 
--- Shows all tables for my reference (I'll delete this later)
-SELECT * FROM adoption;
-SELECT * FROM adoptionapplication;
-SELECT * FROM animal;
-SELECT * FROM customer;
-SELECT * FROM inventory;
-SELECT * FROM inventorypurchase;
-SELECT * FROM pet;
-SELECT * FROM petnicknames;
-SELECT * FROM staff;
-SELECT * FROM veterinarian;
-
 -- #1. Basic SELECT FROM WHERE: IDs of all pets of a specified breed.
 SELECT petID, breed
 FROM pet
@@ -23,7 +11,7 @@ FROM adoption a, customer c, pet p
 WHERE a.adoptedPet = p.petID
 	AND a.adoptingClient = c.email;
     
--- #3. Aggregation: lists the top 10 most adopted species.
+-- #3. Aggregation: the top 10 most adopted species.
 SELECT a.species, COUNT(*) AS numAdopted
 FROM pet p, animal a
 WHERE p.breed = a.breed
@@ -31,3 +19,33 @@ WHERE p.breed = a.breed
 GROUP BY a.species
 ORDER BY numAdopted DESC
 LIMIT 10;
+
+-- #4. NOT: veterinarian phoneNo's that are not from the Territories (i.e. are from the Provinces)
+SELECT phoneNo
+FROM veterinarian
+WHERE province NOT IN ('Northwest Territories', 'Nunavut', 'Yukon');
+
+-- #5. Subquery: names of pets who have at some point been denied adoption.
+SELECT p.petName
+FROM pet p
+WHERE p.petID IN (SELECT a.petID FROM adoptionapplication a WHERE applicationStatus = 'DENIED');
+
+-- #6. EXISTS: phoneNo's of veterinarians that treat more than 4 pets.
+SELECT v.phoneNo
+FROM veterinarian v
+WHERE EXISTS (
+	SELECT 1
+    FROM pet p
+    WHERE p.vetEmail = v.email
+    GROUP BY v.email
+    HAVING COUNT(*) > 4
+);
+
+-- #7. Explicit multi table JOIN and filtering: the petID and customer email of approved pet applications submitted in 2025.
+SELECT p.petID, c.email as customerEmail
+FROM pet p
+JOIN adoptionapplication a ON p.petID = a.petID
+JOIN customer c ON a.customerEmail = c.email
+WHERE a.applicationDate >= '2025-01-01'
+	AND a.applicationDate < '2026-01-01'
+	AND a.applicationStatus = 'APPROVED';
