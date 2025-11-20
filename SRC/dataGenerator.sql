@@ -28,7 +28,7 @@ BEGIN
 	END WHILE;
 END //
 DELIMITER ;
-CALL GenerateCustomer(10);
+CALL GenerateCustomer(3000);
 
 SELECT * FROM Customer;
 
@@ -55,7 +55,7 @@ BEGIN
 	END WHILE;
 END //
 DELIMITER ;
-CALL GenerateStaff(10);
+CALL GenerateStaff(60);
 
 SELECT * FROM Staff;
 
@@ -78,7 +78,7 @@ BEGIN
 	END WHILE;
 END //
 DELIMITER ;
-CALL GenerateAnimal(10);
+CALL GenerateAnimal(200);
 
 SELECT * FROM Animal;
 
@@ -117,7 +117,7 @@ BEGIN
 	END WHILE;
 END //
 DELIMITER ;
-CALL GenerateVeterinarian(10);
+CALL GenerateVeterinarian(100);
 
 SELECT * FROM Veterinarian;
 
@@ -146,7 +146,7 @@ BEGIN
 	END WHILE;
 END //
 DELIMITER ;
-CALL GeneratePet(10);
+CALL GeneratePet(5000);
 
 SELECT * FROM Pet;
 
@@ -169,7 +169,7 @@ BEGIN
 	END WHILE;
 END //
 DELIMITER ;
-CALL GeneratePetNicknames(10);
+CALL GeneratePetNicknames(4000);
 
 SELECT * FROM PetNicknames;
 
@@ -195,7 +195,7 @@ BEGIN
 	END WHILE;
 END //
 DELIMITER ;
-CALL GenerateAdoption(10);
+CALL GenerateAdoption(2000);
 
 SELECT * FROM Adoption;
 
@@ -221,7 +221,7 @@ BEGIN
 	END WHILE;
 END //
 DELIMITER ;
-CALL GenerateAdoptionApplication(10);
+CALL GenerateAdoptionApplication(2000);
 
 SELECT * FROM AdoptionApplication;
 
@@ -246,7 +246,7 @@ BEGIN
 	END WHILE;
 END //
 DELIMITER ;
-CALL GenerateInventory(10);
+CALL GenerateInventory(1000);
 
 SELECT * FROM Inventory;
 
@@ -274,6 +274,6 @@ BEGIN
 	END WHILE;
 END //
 DELIMITER ;
-CALL GenerateInventoryPurchase(10);
+CALL GenerateInventoryPurchase(2000);
 
 SELECT * FROM InventoryPurchase;
