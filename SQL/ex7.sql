@@ -48,3 +48,8 @@ DESCRIBE CustomerAdoptionSummary;
 
 SELECT * FROM CustomerAdoptionSummary
 ORDER BY totalAdoptions DESC;
+
+-- Testing View Updatability 
+
+INSERT INTO StaffInProgressApplications (customerEmail, applicationDate, petID, petName, breed, species, assignedStaffEmail)
+VALUES ('test@test.com', '2025-11-20', 1, 'TestPet', 'Poodle', 'Dog', 'georgeP345@gmail.com');
